@@ -1,4 +1,4 @@
-package com.young.distributed.mq
+package com.young.distributed.core.mq
 
 /**
   * Created by yangyong on 17-5-2.

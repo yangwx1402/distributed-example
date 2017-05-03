@@ -1,6 +1,6 @@
-package com.young.distributed.serialization
+package com.young.distributed.core.serialization
 
-import com.young.distributed.serialization.support.{JavaSerialization, JsonSerialization, KryoSerialization}
+import com.young.distributed.core.serialization.support.{JavaSerialization, JsonSerialization, KryoSerialization}
 
 import scala.beans.BeanProperty
 

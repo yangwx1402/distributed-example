@@ -1,8 +1,8 @@
-package com.young.distributed.serialization.support
+package com.young.distributed.core.serialization.support
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, ObjectOutputStream}
 
-import com.young.distributed.serialization.{DSerializable, SerializationException}
+import com.young.distributed.core.serialization.{DSerializable, SerializationException}
 
 /**
   * Created by young.yang on 2017/3/12.

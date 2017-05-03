@@ -1,4 +1,4 @@
-package com.young.distributed.zk
+package com.young.distributed.core.zk
 
 import org.apache.curator.framework.{CuratorFramework, CuratorFrameworkFactory}
 import org.apache.curator.retry.ExponentialBackoffRetry
@@ -15,7 +15,7 @@ class ZKClient(zkServer: String = "127.0.0.1", retryInterval: Int = 1000, maxRet
   private def getInstance(): CuratorFramework = {
     if (instance == null) {
       val retryPolicy = new ExponentialBackoffRetry(retryInterval, maxRetryTimes)
-      val instance = CuratorFrameworkFactory.newClient(zkServer, retryPolicy)
+      instance = CuratorFrameworkFactory.newClient(zkServer, retryPolicy)
       instance.start()
     }
     instance

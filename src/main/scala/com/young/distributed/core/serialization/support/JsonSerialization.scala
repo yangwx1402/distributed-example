@@ -1,6 +1,6 @@
-package com.young.distributed.serialization.support
+package com.young.distributed.core.serialization.support
 
-import com.young.distributed.serialization.{DSerializable, SerializationException}
+import com.young.distributed.core.serialization.{DSerializable, SerializationException}
 import org.codehaus.jackson.map.ObjectMapper
 
 /**

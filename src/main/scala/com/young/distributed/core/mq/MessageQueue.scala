@@ -1,4 +1,4 @@
-package com.young.distributed.mq
+package com.young.distributed.core.mq
 
 import java.util
 

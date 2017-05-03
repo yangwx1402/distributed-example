@@ -1,4 +1,4 @@
-package com.young.distributed.serialization
+package com.young.distributed.core.serialization
 
 /**
   * Created by young.yang on 2017/3/12.
