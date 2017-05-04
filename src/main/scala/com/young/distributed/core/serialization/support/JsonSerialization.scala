@@ -11,11 +11,19 @@ class JsonSerialization[FROM](clazz:Class[FROM]) extends DSerializable[FROM,Arra
   private val jsonMapper = new ObjectMapper
   @throws[SerializationException]
   override def serialization(from: FROM): Array[Byte] = {
-    jsonMapper.writeValueAsBytes(from)
+    try {
+      jsonMapper.writeValueAsBytes(from)
+    }catch {
+      case e:Exception => throw new SerializationException(e)
+    }
   }
 
   @throws[SerializationException]
   override def deSerialization(to: Array[Byte]): FROM = {
-    jsonMapper.readValue(to,clazz)
+    try {
+      jsonMapper.readValue(to, clazz)
+    }catch {
+      case e:Exception => throw new SerializationException(e)
+    }
   }
 }

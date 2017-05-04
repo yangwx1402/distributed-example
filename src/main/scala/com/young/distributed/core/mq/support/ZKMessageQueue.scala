@@ -25,7 +25,11 @@ class ZKMessageQueue[MESSAGE](queue: String, dSerializable: DSerializable[MESSAG
 
   @throws[MessageQueueException]
   override def add(message: MESSAGE): Unit = {
-    simpleDistributedQueue.offer(dSerializable.serialization(message))
+    try {
+      simpleDistributedQueue.offer(dSerializable.serialization(message))
+    }catch {
+      case e:Exception => throw new MessageQueueException(e)
+    }
   }
 
   @throws[MessageQueueException]
@@ -34,7 +38,7 @@ class ZKMessageQueue[MESSAGE](queue: String, dSerializable: DSerializable[MESSAG
       val data = simpleDistributedQueue.poll()
       dSerializable.deSerialization(data)
     } catch {
-      case e => throw new MessageQueueException(e)
+      case e:Exception => throw new MessageQueueException(e)
     }
   }
 
@@ -43,7 +47,7 @@ class ZKMessageQueue[MESSAGE](queue: String, dSerializable: DSerializable[MESSAG
     try {
       client.getChildren.forPath(queue).size()
     } catch {
-      case e => throw new MessageQueueException(e)
+      case e:Exception => throw new MessageQueueException(e)
     }
   }
 
@@ -53,7 +57,7 @@ class ZKMessageQueue[MESSAGE](queue: String, dSerializable: DSerializable[MESSAG
       for (message <- messages)
         this.add(message)
     } catch {
-      case e => throw new MessageQueueException(e)
+      case e:Exception => throw new MessageQueueException(e)
     }
   }
 
@@ -68,7 +72,7 @@ class ZKMessageQueue[MESSAGE](queue: String, dSerializable: DSerializable[MESSAG
         }
         list
      }catch {
-       case e => throw new MessageQueueException(e)
+       case e:Exception => throw new MessageQueueException(e)
      }
   }
 }

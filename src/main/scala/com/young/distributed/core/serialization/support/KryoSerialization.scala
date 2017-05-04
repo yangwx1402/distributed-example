@@ -17,17 +17,25 @@ class KryoSerialization[FROM<:Serializable](clazz:Class[FROM]) extends DSerializ
 
   @throws[SerializationException]
   override def serialization(from: FROM): Array[Byte] = {
-    val bos = new ByteArrayOutputStream()
-    val output = new Output(bos)
-    kryo.writeClassAndObject(output,from)
-    output.flush()
-    output.clear()
-    bos.toByteArray
+    try {
+      val bos = new ByteArrayOutputStream()
+      val output = new Output(bos)
+      kryo.writeClassAndObject(output, from)
+      output.flush()
+      output.clear()
+      bos.toByteArray
+    }catch {
+      case e:Exception => throw new SerializationException(e)
+    }
   }
 
   @throws[SerializationException]
   override def deSerialization(to: Array[Byte]): FROM = {
-    val input = new Input(new ByteArrayInputStream(to))
-    kryo.readClassAndObject(input).asInstanceOf[FROM]
+    try {
+      val input = new Input(new ByteArrayInputStream(to))
+      kryo.readClassAndObject(input).asInstanceOf[FROM]
+    }catch {
+      case e:Exception => throw new SerializationException(e)
+    }
   }
 }

@@ -7,7 +7,8 @@ class MessageQueueException(message: String, throwable: Throwable) extends Excep
   def this(message: String) = {
     this(message, new Exception)
   }
-  def this(throwable: Throwable){
-    this("",throwable)
+
+  def this(throwable: Throwable) {
+    this("", throwable)
   }
 }
