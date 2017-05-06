@@ -10,7 +10,7 @@ import org.apache.curator.framework.CuratorFramework
 class ZKDStorage[VALUE](client: CuratorFramework, dSerializable: DSerializable[VALUE, Array[Byte]]) extends DStorage[String, VALUE] {
 
   @throws[DStorageException]
-  def checkPath(key: String): Unit = {
+  private def checkPath(key: String): Unit = {
     if (key == null || key.isEmpty) {
       throw new DStorageException(" path is  [" + key + "]")
     }
