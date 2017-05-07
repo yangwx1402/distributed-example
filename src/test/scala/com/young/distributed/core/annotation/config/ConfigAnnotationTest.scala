@@ -2,6 +2,7 @@ package com.young.distributed.core.annotation.config
 
 import com.young.distributed.core.annotation.Config
 import com.young.distributed.core.annotation.support.ConfigAnnotationProcess
+import com.young.distributed.core.annotation.support.base.AnnotationProcessEntity
 import com.young.distributed.core.config.SystemEnv
 import com.young.distributed.core.reflect.AnnotationUtils
 
@@ -16,7 +17,7 @@ object ConfigAnnotationTest{
   def main(args: Array[String]): Unit = {
     val configProess = new ConfigAnnotationProcess
     val annotation = AnnotationUtils.getAnnotation(classOf[ConfigAnnotationTest],classOf[Config])
-    configProess.process(annotation)
+    configProess.process(AnnotationProcessEntity(classOf[ConfigAnnotationTest],annotation))
     println(SystemEnv.get("name"))
   }
 }

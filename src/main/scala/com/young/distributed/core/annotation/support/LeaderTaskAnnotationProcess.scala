@@ -1,13 +1,12 @@
 package com.young.distributed.core.annotation.support
 
-import java.lang.annotation.Annotation
-
-import com.young.distributed.core.annotation.support.base.TargetAnnotationProcess
+import com.young.distributed.core.annotation.support.base.{AnnotationProcess, AnnotationProcessEntity}
+import com.young.distributed.core.annotation.support.exception.AnnotationException
 
 /**
   * Created by yangyong on 17-5-6.
   */
-class LeaderTaskAnnotationProcess extends TargetAnnotationProcess{
-  override def  process[T<:AnyRef](target:Class[T],annotation:Annotation): Unit = ???
-
+class LeaderTaskAnnotationProcess extends AnnotationProcess{
+  @throws[AnnotationException]
+  override def process[T](annotationProcessEntitys: AnnotationProcessEntity[T]*): Unit = ???
 }
