@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface ThreadInfo {
+public @interface LoopThread {
     int threads() default 1;
     String name();
 }

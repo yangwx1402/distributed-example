@@ -3,7 +3,7 @@ package com.young.distributed.core.thread.support;
 /**
  * Created by yangyong on 17-5-7.
  */
-public abstract class LoopThread implements Runnable {
+public abstract class DLoopThread implements Runnable {
 
     public abstract boolean loop();
 
