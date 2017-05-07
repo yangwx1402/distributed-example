@@ -1,4 +1,4 @@
-package com.young.distributed.core.serialization
+package com.young.distributed.core.storage
 
 import com.young.distributed.core.serialization.support.JsonSerialization
 import com.young.distributed.core.storage.support.ZKDStorage

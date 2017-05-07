@@ -1,8 +1,8 @@
-package com.young.distributed.core.serialization
+package com.young.distributed.core.queue
 
-import com.esotericsoftware.kryo.serializers.DefaultSerializers.KryoSerializableSerializer
 import com.young.distributed.core.mq.support.ZKMessageQueue
-import com.young.distributed.core.serialization.support.{JavaSerialization, JsonSerialization, KryoSerialization}
+import com.young.distributed.core.serialization.User
+import com.young.distributed.core.serialization.support.JavaSerialization
 import com.young.distributed.core.zk.ZKClient
 
 /**

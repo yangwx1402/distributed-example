@@ -1,8 +1,10 @@
 package com.young.distributed.core.annotation.support
 
+import java.lang.annotation.Annotation
+
 /**
   * Created by yangyong on 17-5-6.
   */
-class ThreadInfoAnnotationProcess {
-
+class ThreadInfoAnnotationProcess extends AnnotationProcess {
+  override def process(annotation: Annotation*): Unit = ???
 }

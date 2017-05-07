@@ -13,6 +13,7 @@ libraryDependencies ++= {
   val jackson_version = "1.9.13"
   val kryo_version = "2.24.0"
   val curator_version = "2.12.0"
+  val slf4j_version = "1.7.21"
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akka_version,
     "com.typesafe.akka" %% "akka-cluster" % akka_version,
@@ -20,7 +21,9 @@ libraryDependencies ++= {
     "org.codehaus.jackson" % "jackson-core-asl" % jackson_version,
     "com.esotericsoftware.kryo" % "kryo" % kryo_version,
     "org.apache.curator" % "curator-framework" % curator_version,
-    "org.apache.curator" % "curator-recipes" % curator_version
+    "org.apache.curator" % "curator-recipes" % curator_version,
+    "org.slf4j" % "slf4j-api" % slf4j_version,
+    "org.slf4j" % "slf4j-simple" % slf4j_version
   )
 }
     
