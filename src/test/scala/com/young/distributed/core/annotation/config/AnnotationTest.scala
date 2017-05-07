@@ -1,5 +1,6 @@
-package com.young.distributed.core.annotation
+package com.young.distributed.core.annotation.config
 
+import com.young.distributed.core.annotation.Test
 import com.young.distributed.core.reflect.AnnotationUtils
 
 /**

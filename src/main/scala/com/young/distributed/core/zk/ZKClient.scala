@@ -6,7 +6,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry
 /**
   * Created by yangyong on 17-5-2.
   */
-class ZKClient(zkServer: String = "127.0.0.1", retryInterval: Int = 1000, maxRetryTimes: Int = 10) {
+class ZKClient(zkServer: String, retryInterval: Int, maxRetryTimes: Int) {
 
   private val lock = new Object
 
@@ -26,7 +26,7 @@ object ZKClient {
 
   private var zKClient: ZKClient = null
 
-  def getZKClient(zkServer: String = "127.0.0.1", retryInterval: Int = 1000, maxRetryTimes: Int = 10): CuratorFramework = {
+  def getZKClient(zkServer: String = "127.0.0.1:2181", retryInterval: Int = 1000, maxRetryTimes: Int = 10): CuratorFramework = {
     if (zKClient == null) {
       zKClient = new ZKClient(zkServer, retryInterval, maxRetryTimes)
     }

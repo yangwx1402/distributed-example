@@ -1,5 +1,6 @@
-package com.young.distributed.core.annotation
+package com.young.distributed.core.annotation.config
 
+import com.young.distributed.core.annotation.Config
 import com.young.distributed.core.annotation.support.ConfigAnnotationProcess
 import com.young.distributed.core.config.SystemEnv
 import com.young.distributed.core.reflect.AnnotationUtils
