@@ -1,6 +1,7 @@
 package com.young.distributed.core.utils;
 
 import com.google.common.hash.Hashing;
+import com.young.distributed.core.config.SystemEnv;
 
 import java.nio.charset.Charset;
 

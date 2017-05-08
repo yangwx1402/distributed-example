@@ -9,7 +9,7 @@ import com.young.distributed.core.reflect.AnnotationUtils
 /**
   * Created by yangyong on 17-5-7.
   */
-@Config(Array("classpath:default.properties","classpath:config.properties"))
+@Config(Array("classpath:default.properties"))
 class ConfigAnnotationTest {
 }
 
@@ -18,6 +18,6 @@ object ConfigAnnotationTest{
     val configProess = new ConfigAnnotationProcess
     val annotation = AnnotationUtils.getAnnotation(classOf[ConfigAnnotationTest],classOf[Config])
     configProess.process(AnnotationProcessEntity(classOf[ConfigAnnotationTest],annotation))
-    println(SystemEnv.get("name"))
+    println(SystemEnv.getProperty("name"))
   }
 }

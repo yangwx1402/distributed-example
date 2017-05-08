@@ -27,18 +27,21 @@ class ZKMessageQueue[MESSAGE](queue: String, dSerializable: DSerializable[MESSAG
   override def add(message: MESSAGE): Unit = {
     try {
       simpleDistributedQueue.offer(dSerializable.serialization(message))
-    }catch {
-      case e:Exception => throw new MessageQueueException(e)
+    } catch {
+      case e: Exception => throw new MessageQueueException(e)
     }
   }
 
   @throws[MessageQueueException]
-  override def poll(): MESSAGE = {
+  override def poll(): Option[MESSAGE] = {
     try {
       val data = simpleDistributedQueue.poll()
-      dSerializable.deSerialization(data)
+      if (data != null)
+        Option[MESSAGE](dSerializable.deSerialization(data))
+      else
+        Option.empty
     } catch {
-      case e:Exception => throw new MessageQueueException(e)
+      case e: Exception => throw new MessageQueueException(e)
     }
   }
 
@@ -47,7 +50,7 @@ class ZKMessageQueue[MESSAGE](queue: String, dSerializable: DSerializable[MESSAG
     try {
       client.getChildren.forPath(queue).size()
     } catch {
-      case e:Exception => throw new MessageQueueException(e)
+      case e: Exception => throw new MessageQueueException(e)
     }
   }
 
@@ -57,22 +60,22 @@ class ZKMessageQueue[MESSAGE](queue: String, dSerializable: DSerializable[MESSAG
       for (message <- messages)
         this.add(message)
     } catch {
-      case e:Exception => throw new MessageQueueException(e)
+      case e: Exception => throw new MessageQueueException(e)
     }
   }
 
   @throws[MessageQueueException]
   override def poll(batch: Int): util.Collection[MESSAGE] = {
-     try{
-        val list = new util.ArrayList[MESSAGE]()
-        for(i<-0 until batch){
-          val temp = poll()
-          if(temp!=null)
-            list.add(temp)
-        }
-        list
-     }catch {
-       case e:Exception => throw new MessageQueueException(e)
-     }
+    try {
+      val list = new util.ArrayList[MESSAGE]()
+      for (i <- 0 until batch) {
+        val temp = poll()
+        if (!temp.isEmpty)
+          list.add(temp.get)
+      }
+      list
+    } catch {
+      case e: Exception => throw new MessageQueueException(e)
+    }
   }
 }

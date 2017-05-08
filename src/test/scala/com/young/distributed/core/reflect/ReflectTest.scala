@@ -16,5 +16,8 @@ object ReflectTest {
     val targetArgsClass : Array[Class[_]] = args.map(arg=>arg.getClass)
     val instance: ReflectTest = ClassUtils.newInstance(classOf[ReflectTest], args,targetArgsClass)
     instance.print()
+
+    println(Option[String](null))
+    println(Option[String]("123"))
   }
 }

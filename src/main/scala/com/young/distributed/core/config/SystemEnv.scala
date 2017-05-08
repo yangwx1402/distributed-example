@@ -24,14 +24,11 @@ object SystemEnv {
     }
   }
 
-  def getProperty(key: String) = {
+  def getProperty(key: String): String = {
     val value = get(key)
-    if (value != null)
-      value.toString
-    else
-      null
+    if (value.isEmpty) null else value.get.toString
   }
 
-  def get(key: String): AnyRef = env.get(key)
+  def get(key: String): Option[AnyRef] = Option[AnyRef](env.get(key))
 
 }

@@ -10,7 +10,7 @@ trait MessageQueue[MESSAGE] {
   def add(message: MESSAGE)
 
   @throws[MessageQueueException]
-  def poll(): MESSAGE
+  def poll(): Option[MESSAGE]
 
   @throws[MessageQueueException]
   def size(): Int
