@@ -23,7 +23,7 @@ abstract class ZKDLeaderLatchTask(curatorFramework: CuratorFramework, leaderPath
     }
     val leaderLatch = new LeaderLatch(curatorFramework, leaderPath+"/"+this.getClass.getName)
     leaderLatch.addListener(listener)
-    leaderLatch.start()
+    leaderLatch.start
     if(is_stay)
       new Scanner(System.in).nextLine()
   }

@@ -1,4 +1,4 @@
-package com.young.distributed.core.task.leader.support
+package com.young.distributed.core.zk
 
 import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.framework.state.{ConnectionState, ConnectionStateListener}
@@ -7,5 +7,7 @@ import org.apache.curator.framework.state.{ConnectionState, ConnectionStateListe
   * Created by yangyong on 17-5-8.
   */
 class ZKConnectionStateListener extends ConnectionStateListener{
-  override def stateChanged(client: CuratorFramework, newState: ConnectionState): Unit = ???
+  override def stateChanged(client: CuratorFramework, newState: ConnectionState): Unit = {
+    println(newState.toString)
+  }
 }

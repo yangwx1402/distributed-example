@@ -23,7 +23,7 @@ class LeaderTaskTest(client: CuratorFramework, leaderPath: String) extends ZKLea
 }
 object LeaderTaskTest{
   def main(args: Array[String]) {
-    val client = ZKClient.getZKClient("10.142.165.75:2181,10.142.165.75:2182,10.142.165.75:2183")
+    val client = ZKClient.getZKClient("172.17.0.1:2181")
     val task = new LeaderTaskTest(client,"/tmp")
     task.runTask(true)
   }

@@ -16,6 +16,7 @@ class ZKClient(zkServer: String, retryInterval: Int, maxRetryTimes: Int) {
     if (instance == null) {
       val retryPolicy = new ExponentialBackoffRetry(retryInterval, maxRetryTimes)
       instance = CuratorFrameworkFactory.newClient(zkServer, retryPolicy)
+      instance.getConnectionStateListenable.addListener(new ZKConnectionStateListener)
       instance.start()
     }
     instance
