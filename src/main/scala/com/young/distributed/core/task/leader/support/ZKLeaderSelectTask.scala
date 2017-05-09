@@ -1,20 +1,23 @@
 package com.young.distributed.core.task.leader.support
 
-import com.young.distributed.core.task.leader.{DLeaderTask, DLeaderTaskException}
+import java.util.Scanner
+
+import com.young.distributed.core.task.leader.{DLeaderSelectTask, DLeaderTaskException}
 import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.framework.recipes.leader.{LeaderSelector, LeaderSelectorListenerAdapter}
 import org.apache.curator.framework.state.ConnectionState
 
 /**
   * Created by yangyong on 17-5-8.
+  * 该类用来实现进行分布式选举任务，任何时候都只有一个Master
   */
-abstract class ZKLeaderTask(client: CuratorFramework,leaderPath:String) extends DLeaderTask {
+abstract class ZKLeaderSelectTask(client: CuratorFramework, leaderPath:String) extends DLeaderSelectTask {
 
   @throws[DLeaderTaskException]
   def task()
 
   @throws[DLeaderTaskException]
-  override def runTask(): Unit = {
+  override def runTask(is_stay:Boolean): Unit = {
     val listener = new LeaderSelectorListenerAdapter() {
       override def takeLeadership(client: CuratorFramework): Unit = {
            task()
@@ -26,7 +29,9 @@ abstract class ZKLeaderTask(client: CuratorFramework,leaderPath:String) extends 
     }
     client.getConnectionStateListenable().addListener(new ZKConnectionStateListener())
     val selector = new LeaderSelector(client,leaderPath+"/"+this.getClass.getName,listener)
-    selector.autoRequeue();
-    selector.start();
+    selector.autoRequeue()
+    selector.start()
+    if(is_stay)
+      new Scanner(System.in).nextLine()
   }
 }
