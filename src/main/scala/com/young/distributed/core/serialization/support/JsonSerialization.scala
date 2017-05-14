@@ -29,8 +29,9 @@ class JsonSerialization[FROM](clazz: Class[FROM]) extends DSerializable[FROM, Ar
     try {
       if (clazz == classOf[String]) {
         new String(to, defaultEncode).asInstanceOf[FROM]
-      } else
+      } else {
         jsonMapper.readValue(to, clazz)
+      }
     } catch {
       case e: Exception => throw new SerializationException(e)
     }

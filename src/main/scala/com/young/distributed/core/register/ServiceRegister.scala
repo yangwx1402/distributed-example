@@ -7,5 +7,5 @@ trait ServiceRegister {
 
   def registerClient(service: Service)
 
-  def getServices(name:String,service:String):Array[Service]
+  def getServices(consumer: Consumer):Array[Provider]
 }

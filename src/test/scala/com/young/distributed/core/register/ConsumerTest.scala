@@ -14,9 +14,10 @@ object ConsumerTest {
     val register = new PathChildCacheRegister(client,"/service")
     val service = "baidu"
     val name = "test"
-    register.registerClient(new ServiceConsumer(name,service))
+    val consumer = new Consumer(name,service)
+    register.registerClient(consumer)
     while(true) {
-      register.getServices(name, service).foreach(println _)
+      register.getServices(consumer).foreach(println _)
       Thread.sleep(10000)
     }
   }
