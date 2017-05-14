@@ -2,8 +2,9 @@ package com.young.distributed.core.register
 
 import java.util.concurrent.TimeUnit
 
+import com.esotericsoftware.kryo.serializers.DefaultSerializers.KryoSerializableSerializer
 import com.young.distributed.core.serialization.{DSerializable, DSerializableFactory}
-import com.young.distributed.core.serialization.support.{JavaSerialization, JsonSerialization}
+import com.young.distributed.core.serialization.support.{JavaSerialization, JsonSerialization, KryoSerialization}
 import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.framework.recipes.cache.PathChildrenCache
 import org.apache.curator.framework.recipes.nodes.PersistentNode
@@ -21,7 +22,8 @@ class PathChildCacheRegister(curatorFramework: CuratorFramework, registerPath: S
 
   private val consumerMapping = mutable.Map[String, PathChildrenCache]()
 
-  private val providerSer : DSerializable[Provider,Array[Byte]] = DSerializableFactory.getInstance(classOf[JsonSerialization[Provider]].getName,Array[AnyRef](classOf[Provider]))
+  //private val providerSer : DSerializable[Provider,Array[Byte]] = DSerializableFactory.getInstance(classOf[JsonSerialization[Provider]].getName,Array[AnyRef](classOf[Provider]))
+  private val providerSer : DSerializable[Provider,Array[Byte]] = DSerializableFactory.getInstance(classOf[KryoSerialization[Provider]].getName,Array[AnyRef](classOf[Provider]))
 
   //private val consumerSer : DSerializable[Consumer,Array[Byte]] = DSerializableFactory.getInstance(classOf[JsonSerialization[Consumer]].getName,Array[AnyRef](classOf[Consumer]))
 

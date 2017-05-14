@@ -12,8 +12,8 @@ import com.young.distributed.core.serialization.{DSerializable, SerializationExc
   */
 class KryoSerialization[FROM<:Serializable](clazz:Class[FROM]) extends DSerializable[FROM,Array[Byte]]{
   private val kryo = new Kryo
-  kryo.setReferences(false);
-  kryo.register(clazz, new JavaSerializer());
+  kryo.setReferences(false)
+  kryo.register(clazz, new JavaSerializer())
 
   @throws[SerializationException]
   override def serialization(from: FROM): Array[Byte] = {
