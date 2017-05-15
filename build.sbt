@@ -14,6 +14,7 @@ libraryDependencies ++= {
   val kryo_version = "2.24.0"
   val curator_version = "2.12.0"
   val slf4j_version = "1.7.21"
+  val netty_version = "4.1.10.Final"
   Seq(
     "com.typesafe.akka" %% "akka-actor" % akka_version,
     "com.typesafe.akka" %% "akka-cluster" % akka_version,
@@ -23,7 +24,8 @@ libraryDependencies ++= {
     "org.apache.curator" % "curator-framework" % curator_version,
     "org.apache.curator" % "curator-recipes" % curator_version,
     "org.slf4j" % "slf4j-api" % slf4j_version,
-    "org.slf4j" % "slf4j-simple" % slf4j_version
+    "org.slf4j" % "slf4j-simple" % slf4j_version,
+    "io.netty" % "netty-all" % netty_version
   )
 }
     
