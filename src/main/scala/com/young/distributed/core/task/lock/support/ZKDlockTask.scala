@@ -2,7 +2,6 @@ package com.young.distributed.core.task.lock.support
 
 import java.util.concurrent.TimeUnit
 
-import com.typesafe.config.ConfigException.Null
 import com.young.distributed.core.task.lock.{DLockTask, DLockTaskException}
 import org.apache.curator.framework.CuratorFramework
 import org.apache.curator.framework.recipes.locks.InterProcessMutex

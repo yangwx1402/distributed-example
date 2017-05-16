@@ -16,8 +16,8 @@ libraryDependencies ++= {
   val slf4j_version = "1.7.21"
   val netty_version = "4.1.10.Final"
   Seq(
-    "com.typesafe.akka" %% "akka-actor" % akka_version,
-    "com.typesafe.akka" %% "akka-cluster" % akka_version,
+//    "com.typesafe.akka" %% "akka-actor" % akka_version,
+//    "com.typesafe.akka" %% "akka-cluster" % akka_version,
     "org.codehaus.jackson" % "jackson-mapper-asl" % jackson_version,
     "org.codehaus.jackson" % "jackson-core-asl" % jackson_version,
     "com.esotericsoftware.kryo" % "kryo" % kryo_version,
