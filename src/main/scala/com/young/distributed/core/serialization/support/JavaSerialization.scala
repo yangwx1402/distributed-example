@@ -8,7 +8,7 @@ import com.young.distributed.core.serialization.{DSerializable, SerializationExc
 /**
   * Created by young.yang on 2017/3/12.
   */
-class JavaSerialization[FROM<:Serializable] extends DSerializable[FROM, Array[Byte]] {
+class JavaSerialization[FROM <: Serializable] extends DSerializable[FROM, Array[Byte]] {
   @throws[SerializationException]
   override def serialization(from: FROM): Array[Byte] = {
     try {
@@ -17,8 +17,8 @@ class JavaSerialization[FROM<:Serializable] extends DSerializable[FROM, Array[By
       oos.writeObject(from)
       oos.close()
       bos.toByteArray
-    }catch {
-      case e:Exception => throw new SerializationException(e)
+    } catch {
+      case e: Exception => throw new SerializationException(e)
     }
   }
 
@@ -28,8 +28,8 @@ class JavaSerialization[FROM<:Serializable] extends DSerializable[FROM, Array[By
       val bis = new ByteArrayInputStream(to)
       val bos = new ObjectInputStream(bis)
       bos.readObject().asInstanceOf[FROM]
-    }catch {
-      case e:Exception => throw new SerializationException(e)
+    } catch {
+      case e: Exception => throw new SerializationException(e)
     }
   }
 }

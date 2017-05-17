@@ -10,7 +10,7 @@ import com.young.distributed.core.serialization.{DSerializable, SerializationExc
 /**
   * Created by young.yang on 2017/3/12.
   */
-class KryoSerialization[FROM<:Serializable](clazz:Class[FROM]) extends DSerializable[FROM,Array[Byte]]{
+class KryoSerialization[FROM <: Serializable](clazz: Class[FROM]) extends DSerializable[FROM, Array[Byte]] {
   private val kryo = new Kryo
   kryo.setReferences(false)
   kryo.register(clazz, new JavaSerializer())
@@ -24,8 +24,8 @@ class KryoSerialization[FROM<:Serializable](clazz:Class[FROM]) extends DSerializ
       output.flush()
       output.clear()
       bos.toByteArray
-    }catch {
-      case e:Exception => throw new SerializationException(e)
+    } catch {
+      case e: Exception => throw new SerializationException(e)
     }
   }
 
@@ -34,8 +34,8 @@ class KryoSerialization[FROM<:Serializable](clazz:Class[FROM]) extends DSerializ
     try {
       val input = new Input(new ByteArrayInputStream(to))
       kryo.readClassAndObject(input).asInstanceOf[FROM]
-    }catch {
-      case e:Exception => throw new SerializationException(e)
+    } catch {
+      case e: Exception => throw new SerializationException(e)
     }
   }
 }
