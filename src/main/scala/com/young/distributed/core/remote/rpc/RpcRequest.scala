@@ -1,6 +1,7 @@
 package com.young.distributed.core.remote.rpc
 
-import org.codehaus.jackson.map.BeanProperty
+import scala.beans.BeanProperty
+
 
 /**
   * Created by yangyong3 on 2017/5/18.
