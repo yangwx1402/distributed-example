@@ -22,8 +22,11 @@ class NettyServer extends Server {
 
     val SO_BACKLOG : ChannelOption[Int]  = ChannelOption.valueOf("SO_BACKLOG")
     serverBoot.childOption(SO_BACKLOG, 100)
-    val future = serverBoot.bind(new InetSocketAddress("localhost", port)).sync()
+    val address = new InetSocketAddress("localhost", port)
+    val future = serverBoot.bind(address).sync()
+    println("server started in "+address)
     future.channel().closeFuture().sync()
+
   }
 }
 
