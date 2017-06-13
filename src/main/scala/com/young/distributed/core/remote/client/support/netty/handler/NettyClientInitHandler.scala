@@ -19,6 +19,7 @@ class NettyClientInitHandler extends ChannelInitializer[Channel] {
     * @param ch
     */
   override def initChannel(ch: Channel): Unit = {
+    ch.pipeline().addLast(new NettyClientServiceHandler)
     ch.pipeline().addLast(new NettySerializationHandler[RpcRequest](dSerialization))
   }
 }
